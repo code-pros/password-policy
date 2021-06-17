@@ -43,6 +43,6 @@ class ConsecutiveCharacters implements RulesInterface
 
     public function getDescription(): string
     {
-        return 'have more than ' . $this->numConsecutiveCharacters . ' of the same characters in a row.';
+        return 'have ' . $this->numConsecutiveCharacters . ' or more of the same characters in a row.';
     }
 }

@@ -39,6 +39,6 @@ class ConsecutiveCharactersTest extends TestCase
     {
         $rule = new ConsecutiveCharacters(2);
 
-        $this->assertEquals('have more than 2 of the same characters in a row.', $rule->getDescription());
+        $this->assertEquals('have 2 or more of the same characters in a row.', $rule->getDescription());
     }
 }
