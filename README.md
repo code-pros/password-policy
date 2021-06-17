@@ -25,7 +25,7 @@ Use Composer to manage your dependencies:
      * - between 10 and 128 characters
      * - no consecutive characters more than twice
      */
-    $childPolicy = \CodePros\PasswordPolicy\Builder->create()
+    $childPolicy = \CodePros\PasswordPolicy\Builder::create()
             ->addMustRule(new \CodePros\PasswordPolicy\Rules\Characters\Lowercase(1))
             ->addMustRule(new \CodePros\PasswordPolicy\Rules\Characters\Uppercase(1))
             ->addMustRule(new \CodePros\PasswordPolicy\Rules\Characters\Digit(1))
@@ -33,7 +33,7 @@ Use Composer to manage your dependencies:
             ->pctRulesMustPass(75)
             ->build();
 
-    $policy = \CodePros\PasswordPolicy\Builder->create()
+    $policy = \CodePros\PasswordPolicy\Builder::create()
             ->addMustRule(new \CodePros\PasswordPolicy\Rules\Characters\Length(10, 128))
             ->addMustNotRule(new \CodePros\PasswordPolicy\Rules\ConsecutiveCharacters(3))
             ->mustPassPolicy($childPolicy)
