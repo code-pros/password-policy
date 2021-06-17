@@ -3,6 +3,7 @@
 namespace CodePros\PasswordPolicy\Rules\Characters;
 
 use CodePros\PasswordPolicy\Rules\RulesInterface;
+use InvalidArgumentException;
 
 /**
  * Parent class for similar class-of-characters rules
@@ -29,6 +30,19 @@ abstract class Characters implements RulesInterface
      */
     public function __construct(int $min = null, int $max = null)
     {
+        if (!isset($min) && !isset($max)) {
+            throw new InvalidArgumentException('You must specify either a min or a max number of characters.');
+        }
+        if (isset($min) && $min < 0) {
+            throw new InvalidArgumentException('Min number of characters must be positive.');
+        }
+        if (isset($max) && $max < 0) {
+            throw new InvalidArgumentException('Max number of characters must be positive.');
+        }
+        if (isset($min) && isset($max) && $min > $max) {
+            throw new InvalidArgumentException('Min number of characters must be less than or equal Max.');
+        }
+
         $this->min = $min;
         $this->max = $max;
     }

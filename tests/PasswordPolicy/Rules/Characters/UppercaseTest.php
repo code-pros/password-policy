@@ -14,7 +14,7 @@ class UppercaseTest extends TestCase
      */
     public function testGetNumChars()
     {
-        $rule = new Uppercase();
+        $rule = new Uppercase(1);
         $this->assertEquals(4, $rule->getNumChars('SDF130C[]*[^#$`{'));
         $this->assertEquals(0, $rule->getNumChars('asdfgh'));
     }

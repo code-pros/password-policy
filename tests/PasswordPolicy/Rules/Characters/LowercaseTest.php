@@ -15,7 +15,7 @@ class LowercaseTest extends TestCase
      */
     public function testGetNumChars()
     {
-        $rule = new Lowercase();
+        $rule = new Lowercase(1);
         $this->assertEquals(0, $rule->getNumChars('SDF130C[]*[^#$`{'));
         $this->assertEquals(6, $rule->getNumChars('SDF1a30c[]xc[av`{'));
         $this->assertEquals(6, $rule->getNumChars('asdfgh'));

@@ -15,7 +15,7 @@ class SpecialTest extends TestCase
      */
     public function testGetNumChars()
     {
-        $rule = new Special();
+        $rule = new Special(1);
         $this->assertEquals(12, $rule->getNumChars("SDF130C[]*[^#$`{\*/c"));
         $this->assertEquals(0, $rule->getNumChars('asdfgh'));
     }

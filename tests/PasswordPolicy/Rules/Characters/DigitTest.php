@@ -15,7 +15,7 @@ class DigitTest extends TestCase
      */
     public function testGetNumChars()
     {
-        $rule = new Digit();
+        $rule = new Digit(1);
         $this->assertEquals(3, $rule->getNumChars('SDF130C[]*[^#$`{'));
         $this->assertEquals(0, $rule->getNumChars('asdfgh'));
     }
