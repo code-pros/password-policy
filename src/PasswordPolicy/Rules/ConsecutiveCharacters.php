@@ -40,4 +40,9 @@ class ConsecutiveCharacters implements RulesInterface
     {
         return (bool)preg_match('/(.)\1{2}/', $password);
     }
+
+    public function getDescription(): string
+    {
+        return 'have more than ' . $this->numConsecutiveCharacters . ' of the same characters in a row.';
+    }
 }

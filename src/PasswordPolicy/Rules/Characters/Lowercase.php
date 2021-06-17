@@ -9,6 +9,7 @@ namespace CodePros\PasswordPolicy\Rules\Characters;
  */
 class Lowercase extends Characters
 {
+    public const DESCRIPTION_TYPE = 'Lowercase character';
 
     public function getNumChars(string $password): int
     {

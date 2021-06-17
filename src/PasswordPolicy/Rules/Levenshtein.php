@@ -25,14 +25,25 @@ class Levenshtein implements RulesInterface
     protected $minDistance;
 
     /**
+     * Description of the string we're comparing the new password to
+     * @var string
+     */
+    private $stringDesc;
+
+    /**
      * Constructor
      * @param string $comparisonString String to compare the distance
      * @param int $minDistance
+     * @param string $comparisonStringDescription Description for what the comparison string is.
      */
-    public function __construct(string $comparisonString, int $minDistance)
-    {
+    public function __construct(
+        string $comparisonString,
+        int $minDistance,
+        string $comparisonStringDescription = 'your previous password'
+    ) {
         $this->string = $comparisonString;
         $this->minDistance = $minDistance;
+        $this->stringDesc = $comparisonStringDescription;
     }
 
     /**
@@ -43,5 +54,10 @@ class Levenshtein implements RulesInterface
     public function matches(string $password): bool
     {
         return levenshtein($password, $this->string) >= $this->minDistance;
+    }
+
+    public function getDescription(): string
+    {
+        return 'be more different from ' . $this->stringDesc . '.';
     }
 }

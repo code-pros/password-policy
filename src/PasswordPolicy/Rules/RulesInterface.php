@@ -10,4 +10,10 @@ namespace CodePros\PasswordPolicy\Rules;
 interface RulesInterface
 {
     public function matches(string $password): bool;
+
+    /**
+     * Gets a human-readable description of this rule
+     * @return string
+     */
+    public function getDescription(): string;
 }

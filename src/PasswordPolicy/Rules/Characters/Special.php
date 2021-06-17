@@ -13,6 +13,7 @@ namespace CodePros\PasswordPolicy\Rules\Characters;
  */
 class Special extends Characters
 {
+    public const DESCRIPTION_TYPE = 'Special character';
 
     public function getNumChars(string $password): int
     {

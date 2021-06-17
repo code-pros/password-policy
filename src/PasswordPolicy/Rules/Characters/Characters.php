@@ -68,4 +68,21 @@ abstract class Characters implements RulesInterface
      * Get the number of characters in this certain set
      */
     abstract public function getNumChars(string $password): int;
+
+    /**
+     * Gets a human-readable description of this rule
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        if (isset($this->min) && isset($this->max)) {
+            return 'have ' . $this->min . ' to ' . $this->max . ' ' . static::DESCRIPTION_TYPE . 's.';
+        }
+
+        if (isset($this->max)) {
+            return 'have at most ' . $this->max . ' ' . static::DESCRIPTION_TYPE . 's.';
+        }
+
+        return 'have at least ' . $this->min . ' ' . static::DESCRIPTION_TYPE . (($this->min > 1) ? 's' : '') . '.';
+    }
 }

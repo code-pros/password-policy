@@ -31,4 +31,14 @@ class ConsecutiveCharactersTest extends TestCase
         $this->assertTrue($rule->matches('asdfffdva'));
         $this->assertFalse($rule->matches('chilly'));
     }
+
+    /**
+     * @covers \CodePros\PasswordPolicy\Rules\ConsecutiveCharacters::getDescription
+     */
+    public function testGetDescription()
+    {
+        $rule = new ConsecutiveCharacters(2);
+
+        $this->assertEquals('have more than 2 of the same characters in a row.', $rule->getDescription());
+    }
 }

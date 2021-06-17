@@ -88,4 +88,26 @@ class CharactersTest extends TestCase
         $this->expectExceptionMessage('Min number of characters must be less than or equal Max.');
         $rule = new DummyClass(10, 5);
     }
+
+    /**
+     * @covers \CodePros\PasswordPolicy\Rules\Characters\Characters::getDescription
+     */
+    public function testGetDescription()
+    {
+        // min only
+        $ruleMinOnly = new DummyClass(1);
+        $this->assertEquals('have at least 1 Any character.', $ruleMinOnly->getDescription());
+
+        // min only
+        $ruleMinOnlyPlural = new DummyClass(2);
+        $this->assertEquals('have at least 2 Any characters.', $ruleMinOnlyPlural->getDescription());
+
+        // max only
+        $ruleMaxOnly = new DummyClass(null, 5);
+        $this->assertEquals('have at most 5 Any characters.', $ruleMaxOnly->getDescription());
+
+        // both
+        $ruleBoth = new DummyClass(1, 5);
+        $this->assertEquals('have 1 to 5 Any characters.', $ruleBoth->getDescription());
+    }
 }

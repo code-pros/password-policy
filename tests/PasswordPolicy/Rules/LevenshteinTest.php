@@ -23,4 +23,14 @@ class LevenshteinTest extends TestCase
         $this->assertFalse($rule->matches('spring'));
         $this->assertFalse($rule->matches('sring'));
     }
+
+    /**
+     * @covers \CodePros\PasswordPolicy\Rules\Levenshtein::getDescription
+     */
+    public function testGetDescription()
+    {
+        $rule = new Levenshtein('string', 2);
+
+        $this->assertEquals('be more different from your previous password.', $rule->getDescription());
+    }
 }

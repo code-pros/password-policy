@@ -34,27 +34,61 @@ class PasswordPolicy
     public $pctOfRulesNecessaryToPass = 100;
 
     /**
+     * Status of last validation run
+     * @var array
+     */
+    protected $detailedStatus = [];
+
+    /**
      * Validates a password matches this policy
      */
     public function validate(string $password): bool
     {
-        $numTests = count($this->mustRules) + count($this->mustNotRules) + count($this->childPolicies);
+        // reset the status
+        $this->detailedStatus = [];
+
+        $numTotalRules = count($this->mustRules) + count($this->mustNotRules) + count($this->childPolicies);
 
         $passes = 0;
 
+        $numRulesNeededToPass = ceil(($this->pctOfRulesNecessaryToPass / 100) * $numTotalRules);
+
+        if ($numRulesNeededToPass < $numTotalRules) {
+            $this->detailedStatus[] = [
+                'message' => 'Password must follow '
+                    . $numRulesNeededToPass . '/' . $numTotalRules . ' of the following rules.',
+            ];
+        }
+
         // must match
         foreach ($this->mustRules as $rule) {
+            $passesThisRule = false;
+
             if ($rule->matches($password)) {
                 $passes++;
+                $passesThisRule = true;
             }
+
+            $this->detailedStatus[] = [
+                'message' => 'Password must ' . $rule->getDescription(),
+                'passed' => $passesThisRule,
+            ];
         }
         unset($rule);
 
         // must not match
         foreach ($this->mustNotRules as $rule) {
+            $passesThisRule = false;
+
             if (!$rule->matches($password)) {
                 $passes++;
+                $passesThisRule = true;
             }
+
+            $this->detailedStatus[] = [
+                'message' => 'Password must not ' . $rule->getDescription(),
+                'passed' => $passesThisRule,
+            ];
         }
         unset($rule);
 
@@ -66,6 +100,23 @@ class PasswordPolicy
         }
         unset($policy);
 
-        return round($passes / $numTests * 100) >= $this->pctOfRulesNecessaryToPass;
+        return round($passes / $numTotalRules * 100) >= $this->pctOfRulesNecessaryToPass;
+    }
+
+    /**
+     * Gets human-readable descriptions of the rules and whether or not the last password
+     * passed each rule.  Run this after validate().
+     * @return array
+     */
+    public function getDetailedStatus(): array
+    {
+        $data = $this->detailedStatus;
+
+        foreach ($this->childPolicies as $childPolicy) {
+            $data = array_merge($data, $childPolicy->detailedStatus);
+        }
+        unset($childPolicy);
+
+        return $data;
     }
 }

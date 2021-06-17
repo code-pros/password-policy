@@ -34,7 +34,7 @@ Use Composer to manage your dependencies:
             ->build();
 
     $policy = \CodePros\PasswordPolicy\Builder->create()
-            ->addMustRule(new \CodePros\PasswordPolicy\Rules\Length(10, 128))
+            ->addMustRule(new \CodePros\PasswordPolicy\Rules\Characters\Length(10, 128))
             ->addMustNotRule(new \CodePros\PasswordPolicy\Rules\ConsecutiveCharacters(3))
             ->mustPassPolicy($childPolicy)
             ->build();

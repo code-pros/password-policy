@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Tests\PasswordPolicy\Rules\Characters;
 
 use CodePros\PasswordPolicy\Rules\Characters\Characters;
@@ -9,6 +11,7 @@ use CodePros\PasswordPolicy\Rules\Characters\Characters;
  */
 class DummyClass extends Characters
 {
+    public const DESCRIPTION_TYPE = 'Any character';
 
     /**
      * @inheritDoc

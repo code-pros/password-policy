@@ -10,6 +10,8 @@ namespace CodePros\PasswordPolicy\Rules\Characters;
 class Uppercase extends Characters
 {
 
+    public const DESCRIPTION_TYPE = 'Uppercase character';
+
     public function getNumChars(string $password): int
     {
         return strlen(preg_replace('/[^A-Z]/', '', $password));

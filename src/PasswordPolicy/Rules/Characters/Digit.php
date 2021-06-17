@@ -10,6 +10,8 @@ namespace CodePros\PasswordPolicy\Rules\Characters;
 class Digit extends Characters
 {
 
+    public const DESCRIPTION_TYPE = 'Digit';
+
     public function getNumChars(string $password): int
     {
         return strlen(preg_replace('/[^\d]/', '', $password));
