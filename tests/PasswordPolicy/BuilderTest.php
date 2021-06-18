@@ -22,7 +22,7 @@ class BuilderTest extends TestCase
      */
     private $failingRule;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->passingRule = $this->createMock(Uppercase::class);
