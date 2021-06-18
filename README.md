@@ -44,6 +44,11 @@ Use Composer to manage your dependencies:
      */
     $valid = $policy->validate('user supplied password');
 
+    /**
+     * Get back a list of rules and whether the last validation passed each.
+     */
+    $messages = $policy->getDetailedStatus();
+
 ## Development
 
 ### Development Process
