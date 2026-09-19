@@ -28,7 +28,7 @@ abstract class Characters implements RulesInterface
      * @param int|null $min Minimum number of characters (or null for no constraint)
      * @param int|null $max Maximum number of characters (or null for no constraint)
      */
-    public function __construct(int $min = null, int $max = null)
+    public function __construct(?int $min = null, ?int $max = null)
     {
         if (!isset($min) && !isset($max)) {
             throw new InvalidArgumentException('You must specify either a min or a max number of characters.');
