@@ -6,21 +6,23 @@ namespace CodePros\PasswordPolicy;
 
 class PasswordPolicy
 {
-
     /**
      * Rules that must be true
+     *
      * @var Rules\RulesInterface[]
      */
     public $mustRules = [];
 
     /**
      * Rules that must be false
+     *
      * @var Rules\RulesInterface[]
      */
     public $mustNotRules = [];
 
     /**
      * Nested policies that must validate
+     *
      * @var PasswordPolicy[]
      */
     public $childPolicies = [];
@@ -29,12 +31,14 @@ class PasswordPolicy
      * Percentage of rules necessary to pass
      * Defaults to 100(%).  Useful for if you want 3 out of 4 rules to be valid
      * to accept the password
+     *
      * @var int
      */
     public $pctOfRulesNecessaryToPass = 100;
 
     /**
      * Status of last validation run
+     *
      * @var array
      */
     protected $detailedStatus = [];
@@ -106,6 +110,7 @@ class PasswordPolicy
     /**
      * Gets human-readable descriptions of the rules and whether or not the last password
      * passed each rule.  Run this after validate().
+     *
      * @return array
      */
     public function getDetailedStatus(): array

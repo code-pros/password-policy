@@ -10,7 +10,6 @@ use PHPUnit\Framework\TestCase;
 
 class ConsecutiveCharactersTest extends TestCase
 {
-
     /**
      * @covers \CodePros\PasswordPolicy\Rules\ConsecutiveCharacters::__construct
      */

@@ -10,21 +10,23 @@ use InvalidArgumentException;
  */
 abstract class Characters implements RulesInterface
 {
-
     /**
      * Minimum number
+     *
      * @var int|null
      */
     protected $min;
 
     /**
      * Maximum number
+     *
      * @var int|null
      */
     protected $max;
 
     /**
      * Constructor
+     *
      * @param int|null $min Minimum number of characters (or null for no constraint)
      * @param int|null $max Maximum number of characters (or null for no constraint)
      */
@@ -49,6 +51,7 @@ abstract class Characters implements RulesInterface
 
     /**
      * Does password have a certain number of characters?
+     *
      * @param string $password
      * @return bool
      */
@@ -71,6 +74,7 @@ abstract class Characters implements RulesInterface
 
     /**
      * Gets a human-readable description of this rule
+     *
      * @return string
      */
     public function getDescription(): string
