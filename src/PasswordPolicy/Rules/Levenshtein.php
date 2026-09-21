@@ -11,27 +11,30 @@ namespace CodePros\PasswordPolicy\Rules;
  */
 class Levenshtein implements RulesInterface
 {
-
     /**
      * String to compare to
+     *
      * @var string
      */
     protected $string;
 
     /**
      * Minimum distance of difference
+     *
      * @var int
      */
     protected $minDistance;
 
     /**
      * Description of the string we're comparing the new password to
+     *
      * @var string
      */
     private $stringDesc;
 
     /**
      * Constructor
+     *
      * @param string $comparisonString String to compare the distance
      * @param int $minDistance
      * @param string $comparisonStringDescription Description for what the comparison string is.
@@ -48,6 +51,7 @@ class Levenshtein implements RulesInterface
 
     /**
      * Is password within range of length?
+     *
      * @param string $password
      * @return bool
      */

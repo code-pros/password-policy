@@ -13,6 +13,7 @@ interface RulesInterface
 
     /**
      * Gets a human-readable description of this rule
+     *
      * @return string
      */
     public function getDescription(): string;

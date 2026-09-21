@@ -9,7 +9,6 @@ use RuntimeException;
 
 class Builder
 {
-
     /**
      * @var PasswordPolicy
      */
